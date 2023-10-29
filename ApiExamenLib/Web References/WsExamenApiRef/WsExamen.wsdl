@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AgregarExamen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarExamenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarExamenResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizarExamen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizarExamenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ActualizarExamenResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarExamen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EliminarExamenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EliminarExamenResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarExamen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarExamenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarExamenResult" type="tns:ArrayOfTblExamen" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTblExamen">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="tblExamen" nillable="true" type="tns:tblExamen" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="tblExamen">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="idExamen" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AgregarExamenSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarExamen" />
+  </wsdl:message>
+  <wsdl:message name="AgregarExamenSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarExamenResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarExamenSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualizarExamen" />
+  </wsdl:message>
+  <wsdl:message name="ActualizarExamenSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualizarExamenResponse" />
+  </wsdl:message>
+  <wsdl:message name="EliminarExamenSoapIn">
+    <wsdl:part name="parameters" element="tns:EliminarExamen" />
+  </wsdl:message>
+  <wsdl:message name="EliminarExamenSoapOut">
+    <wsdl:part name="parameters" element="tns:EliminarExamenResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarExamenSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarExamen" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarExamenSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarExamenResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WsExamenSoap">
+    <wsdl:operation name="AgregarExamen">
+      <wsdl:input message="tns:AgregarExamenSoapIn" />
+      <wsdl:output message="tns:AgregarExamenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarExamen">
+      <wsdl:input message="tns:ActualizarExamenSoapIn" />
+      <wsdl:output message="tns:ActualizarExamenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarExamen">
+      <wsdl:input message="tns:EliminarExamenSoapIn" />
+      <wsdl:output message="tns:EliminarExamenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarExamen">
+      <wsdl:input message="tns:ConsultarExamenSoapIn" />
+      <wsdl:output message="tns:ConsultarExamenSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WsExamenSoap" type="tns:WsExamenSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AgregarExamen">
+      <soap:operation soapAction="http://tempuri.org/AgregarExamen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarExamen">
+      <soap:operation soapAction="http://tempuri.org/ActualizarExamen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarExamen">
+      <soap:operation soapAction="http://tempuri.org/EliminarExamen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarExamen">
+      <soap:operation soapAction="http://tempuri.org/ConsultarExamen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WsExamenSoap12" type="tns:WsExamenSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AgregarExamen">
+      <soap12:operation soapAction="http://tempuri.org/AgregarExamen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarExamen">
+      <soap12:operation soapAction="http://tempuri.org/ActualizarExamen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarExamen">
+      <soap12:operation soapAction="http://tempuri.org/EliminarExamen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarExamen">
+      <soap12:operation soapAction="http://tempuri.org/ConsultarExamen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WsExamen">
+    <wsdl:port name="WsExamenSoap" binding="tns:WsExamenSoap">
+      <soap:address location="http://localhost:61795/WsExamen.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WsExamenSoap12" binding="tns:WsExamenSoap12">
+      <soap12:address location="http://localhost:61795/WsExamen.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
